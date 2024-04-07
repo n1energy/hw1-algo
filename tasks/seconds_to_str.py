@@ -1,19 +1,17 @@
-__all__ = ("seconds_to_str",)
-
+__all__ = (
+    'seconds_to_str',
+)
+from datetime import datetime
 
 def seconds_to_str(seconds: int) -> str:
-    """Реализует текстовое представление времени.
-
-    Example:
-        >> seconds_to_str(20)
-        20s
-        >> seconds_to_str(60)
-        01m00s
-        >> seconds_to_str(65)
-        01m05s
-        >> seconds_to_str(3700)
-        01h01m40s
-        >> seconds_to_str(93600)
-        01d02h00m00s
-    """
-    raise NotImplementedError
+   m, s = divmod(seconds, 60)
+   h, m = divmod(m, 60)
+   d, h = divmod(h, 24)
+   if seconds < 60:
+       return f'{s:02d}s'
+   elif seconds < 3600:
+       return f'{m:02d}m{s:02d}s'
+   elif seconds < 86400:
+       return f'{h:02d}h{m:02d}m{s:02d}s'
+   else:
+       return f'{d:02d}d{h:02d}h{m:02d}m{s:02d}s'

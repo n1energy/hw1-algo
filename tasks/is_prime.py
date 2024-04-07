@@ -1,17 +1,22 @@
-__all__ = (
-    'seconds_to_str',
-)
-from datetime import datetime
+__all__ = ("is_prime",)
 
-def seconds_to_str(seconds: int) -> str:
-   m, s = divmod(seconds, 60)
-   h, m = divmod(m, 60)
-   d, h = divmod(h, 24)
-   if seconds < 60:
-       return f'{s:02d}s'
-   elif seconds < 3600:
-       return f'{m:02d}m{s:02d}s'
-   elif seconds < 86400:
-       return f'{h:02d}h{m:02d}m{s:02d}s'
-   else:
-       return f'{d:02d}d{h:02d}h{m:02d}m{s:02d}s'
+
+def is_prime(number: int) -> bool:
+    """Определяет, является ли число простым.
+
+    Example:
+        >> is_prime(0):
+        False
+        >> is_prime(1):
+        False
+        >> is_prime(4):
+        True
+    """
+    if number < 2:
+        return False
+    if number % 2 == 0:
+        return number == 2
+    d = 3
+    while d * d <= number and number % d != 0:
+        d += 2
+    return d * d > number
