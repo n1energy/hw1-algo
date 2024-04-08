@@ -46,7 +46,7 @@ class Graph:
                 queue.appendleft(next_node)
         return visited
 
-    def bfs(self) -> list[Node]:
+    def bfs(self) -> List[Node]:
         visited = []
         queue = deque([self._root])
         visited.append(self._root)
